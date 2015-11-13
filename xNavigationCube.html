@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: PerspectiveCamera</title>
+    <title>Class: xNavigationCube</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 	
-		<h1 class="page-title">Class: PerspectiveCamera</h1>
+		<h1 class="page-title">Class: xNavigationCube</h1>
     
     
 
@@ -29,14 +29,13 @@
 <header>
     
         <h2>
-        PerspectiveCamera
+        xNavigationCube
         </h2>
         
-            <div class="class-description"><p>This is a structure that holds settings of perspective camera. If you want 
-to switch viewer to use perspective camera set <a href="xViewer.html#camera">camera</a> to 'perspective'.
-You can modify this but it is not necessary because sensible values are 
-defined when geometry model is loaded with <a href="xViewer.html#load">load()</a> method. If you want to 
-change these values you have to do it after geometry is loaded.</p></div>
+            <div class="class-description"><p>This is a plugin for xViewer which renders interactive navigation cube. It is customizable in terms of alpha 
+behaviour and its position on the viewer canvas. Use of plugin:</p>
+<pre class="prettyprint source"><code>var cube = new xNavigationCube();
+viewer.addPlugin(cube);</code></pre></div>
         
     
 </header>
@@ -51,7 +50,7 @@ change these values you have to do it after geometry is loaded.</p></div>
         <h2>Constructor</h2>
         
 
-        <h4 class="name" id="PerspectiveCamera"><span class="type-signature"></span>new PerspectiveCamera<span class="signature">()</span><span class="type-signature"></span></h4>
+        <h4 class="name" id="xNavigationCube"><span class="type-signature"></span>new xNavigationCube<span class="signature">(locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
         
     
@@ -60,7 +59,8 @@ change these values you have to do it after geometry is loaded.</p></div>
 
     
     <div class="description">
-        <p>This is only a structure. Don't call the constructor.</p>
+        <p>This is constructor of the Navigation Cube plugin for <a href="xViewer.html">xBIM Viewer</a>. It gets optional string ID as an argument for locale. 
+The only current locale is 'en' which id also the default value. Cube might have localized texture in the future.</p>
     </div>
     
 
@@ -70,6 +70,74 @@ change these values you have to do it after geometry is loaded.</p></div>
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>locale</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'en'
+                
+                </td>
+            
+
+            <td class="description last"><p>optional string ID of the locale.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -145,14 +213,16 @@ change these values you have to do it after geometry is loaded.</p></div>
         <dl>
             
 <dt>
-    <h4 class="name" id="far"><span class="type-signature"></span>far<span class="type-signature"> :Number</span></h4>
+    <h4 class="name" id="activeAlpha"><span class="type-signature"></span>activeAlpha<span class="type-signature"> :Number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>Far cutting plane</p>
+        <p>Navigation cube has two transparency states. One is when user hovers over the cube and the second when the cursor is anywhere else.
+This is for the hovering shate and it should be a positive number between [0,1]. If the value is less than 1 cube will be semitransparent 
+when user hovers over. Default value is 1.0.</p>
     </div>
     
 
@@ -215,14 +285,16 @@ change these values you have to do it after geometry is loaded.</p></div>
         
             
 <dt>
-    <h4 class="name" id="fov"><span class="type-signature"></span>fov<span class="type-signature"> :Number</span></h4>
+    <h4 class="name" id="highlighting"><span class="type-signature"></span>highlighting<span class="type-signature"> :Number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>Field of view</p>
+        <p>Active parts of the navigation cube are highlighted so that user can recognize which part is active. 
+This should be a positive number between [0,2]. If the value is less than 1 active area is darker.
+If the value is greater than 1 active area is lighter. Default value is 1.2.</p>
     </div>
     
 
@@ -285,14 +357,157 @@ change these values you have to do it after geometry is loaded.</p></div>
         
             
 <dt>
-    <h4 class="name" id="near"><span class="type-signature"></span>near<span class="type-signature"> :Number</span></h4>
+    <h4 class="name" id="passiveAlpha"><span class="type-signature"></span>passiveAlpha<span class="type-signature"> :Number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>Near cutting plane</p>
+        <p>Navigation cube has two transparency states. One is when user hovers over the cube and the second when the cursor is anywhere else.
+This is for the non-hovering shate and it should be a positive number between [0,1]. If the value is less than 1 cube will be semitransparent 
+when user is not hovering over. Default value is 0.3.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="position"><span class="type-signature"></span>position<span class="type-signature"> :Enum</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>It is possible to place navigation cube to any of the corners of the canvas using this property. Default value is cube.BOTTOM_RIGHT. 
+Allowed values are cube.BOTTOM_RIGHT, cube.BOTTOM_LEFT, cube.TOP_RIGHT and cube.TOP_LEFT.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Enum</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="ratio"><span class="type-signature"></span>ratio<span class="type-signature"> :Number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Size of the cube relative to the size of viewer canvas. This has to be a positive number between [0,1] Default value is 0.15.</p>
     </div>
     
 
