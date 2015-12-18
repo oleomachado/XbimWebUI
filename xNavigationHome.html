@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: xNavigationCube</title>
+    <title>Class: xNavigationHome</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 	
-		<h1 class="page-title">Class: xNavigationCube</h1>
+		<h1 class="page-title">Class: xNavigationHome</h1>
     
     
 
@@ -29,13 +29,13 @@
 <header>
     
         <h2>
-        xNavigationCube
+        xNavigationHome
         </h2>
         
-            <div class="class-description"><p>This is a plugin for xViewer which renders interactive navigation cube. It is customizable in terms of alpha 
-behaviour and its position on the viewer canvas. Use of plugin:</p>
-<pre class="prettyprint source"><code>var cube = new xNavigationCube();
-viewer.addPlugin(cube);</code></pre></div>
+            <div class="class-description"><p>This is a plugin for xViewer which renders interactive home button. It is customizable in terms of alpha 
+behaviour and its position on the viewer canvas as well as definition of the distance and view direction. Use of plugin:</p>
+<pre class="prettyprint source"><code>var home = new xNavigationHome();
+viewer.addPlugin(home);</code></pre></div>
         
     
 </header>
@@ -50,7 +50,7 @@ viewer.addPlugin(cube);</code></pre></div>
         <h2>Constructor</h2>
         
 
-        <h4 class="name" id="xNavigationCube"><span class="type-signature"></span>new xNavigationCube<span class="signature">(locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+        <h4 class="name" id="xNavigationHome"><span class="type-signature"></span>new xNavigationHome<span class="signature">(image<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
         
     
@@ -59,8 +59,8 @@ viewer.addPlugin(cube);</code></pre></div>
 
     
     <div class="description">
-        <p>This is constructor of the Navigation Cube plugin for <a href="xViewer.html">xBIM Viewer</a>. It gets optional string ID as an argument for locale. 
-The only current locale is 'en' which id also the default value. Cube might have localized texture in the future.</p>
+        <p>This is constructor of the Home plugin for <a href="xViewer.html">xBIM Viewer</a>. It gets optional Image object as an argument. If no image
+is specified there is a default one (which is not very prety).</p>
     </div>
     
 
@@ -100,13 +100,13 @@ The only current locale is 'en' which id also the default value. Cube might have
 
         <tr>
             
-                <td class="name"><code>locale</code></td>
+                <td class="name"><code>image</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Image</span>
 
 
             
@@ -127,12 +127,12 @@ The only current locale is 'en' which id also the default value. Cube might have
             
                 <td class="default">
                 
-                    'en'
+                    null
                 
                 </td>
             
 
-            <td class="description last"><p>optional string ID of the locale.</p></td>
+            <td class="description last"><p>optional image to be used for a button.</p></td>
         </tr>
 
     
@@ -220,7 +220,7 @@ The only current locale is 'en' which id also the default value. Cube might have
 <dd>
     
     <div class="description">
-        <p>Navigation cube has two transparency states. One is when user hovers over the cube and the second when the cursor is anywhere else.
+        <p>Navigation home button has two transparency states. One is when user hovers over the cube and the second when the cursor is anywhere else.
 This is for the hovering shate and it should be a positive number between [0,1]. If the value is less than 1 cube will be semitransparent 
 when user hovers over. Default value is 1.0.</p>
     </div>
@@ -285,16 +285,14 @@ when user hovers over. Default value is 1.0.</p>
         
             
 <dt>
-    <h4 class="name" id="highlighting"><span class="type-signature"></span>highlighting<span class="type-signature"> :Number</span></h4>
+    <h4 class="name" id="distance"><span class="type-signature"></span>distance<span class="type-signature"> :Number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>Active parts of the navigation cube are highlighted so that user can recognize which part is active. 
-This should be a positive number between [0,2]. If the value is less than 1 active area is darker.
-If the value is greater than 1 active area is lighter. Default value is 1.2.</p>
+        <p>Distance to be used for a home view. If null, default viewer distance for a full extent mode is used. Default value: null</p>
     </div>
     
 
@@ -364,7 +362,7 @@ If the value is greater than 1 active area is lighter. Default value is 1.2.</p>
 <dd>
     
     <div class="description">
-        <p>Navigation cube has two transparency states. One is when user hovers over the cube and the second when the cursor is anywhere else.
+        <p>Navigation home button has two transparency states. One is when user hovers over the cube and the second when the cursor is anywhere else.
 This is for the non-hovering shate and it should be a positive number between [0,1]. If the value is less than 1 cube will be semitransparent 
 when user is not hovering over. Default value is 0.3.</p>
     </div>
@@ -429,15 +427,14 @@ when user is not hovering over. Default value is 0.3.</p>
         
             
 <dt>
-    <h4 class="name" id="position"><span class="type-signature"></span>position<span class="type-signature"> :Enum</span></h4>
+    <h4 class="name" id="placementX"><span class="type-signature"></span>placementX<span class="type-signature"> :Number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        <p>It is possible to place navigation cube to any of the corners of the canvas using this property. Default value is cube.BOTTOM_RIGHT. 
-Allowed values are cube.BOTTOM_RIGHT, cube.BOTTOM_LEFT, cube.TOP_RIGHT and cube.TOP_LEFT.</p>
+        <p>Position of the the home button relative to the size of viewer canvas. This has to be a positive number between [0,1] Default value is 0.05.</p>
     </div>
     
 
@@ -446,7 +443,77 @@ Allowed values are cube.BOTTOM_RIGHT, cube.BOTTOM_LEFT, cube.TOP_RIGHT and cube.
         <ul>
             <li>
                 
-<span class="param-type">Enum</span>
+<span class="param-type">Number</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="placementY"><span class="type-signature"></span>placementY<span class="type-signature"> :Number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Position of the the home button relative to the size of viewer canvas. This has to be a positive number between [0,1] Default value is 0.05.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
 
 
             </li>
@@ -507,7 +574,77 @@ Allowed values are cube.BOTTOM_RIGHT, cube.BOTTOM_LEFT, cube.TOP_RIGHT and cube.
 <dd>
     
     <div class="description">
-        <p>Size of the cube relative to the size of viewer canvas. This has to be a positive number between [0,1] Default value is 0.15.</p>
+        <p>Size of the the home button relative to the size of viewer canvas. This has to be a positive number between [0,1] Default value is 0.2.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Number</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="viewDirection"><span class="type-signature"></span>viewDirection<span class="type-signature"> :Number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>View direction to be used for a home view. Default value: [1, 1, -1]</p>
     </div>
     
 
