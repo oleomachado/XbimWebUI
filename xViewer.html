@@ -2153,7 +2153,7 @@ your custom colour which you have defined in <a href="xViewer.html#defineStyle">
     
         
 
-        <h4 class="name" id="load"><span class="type-signature"></span>load<span class="signature">(model)</span><span class="type-signature"></span></h4>
+        <h4 class="name" id="load"><span class="type-signature"></span>load<span class="signature">(model, tag)</span><span class="type-signature"></span></h4>
 
         
     
@@ -2164,7 +2164,7 @@ your custom colour which you have defined in <a href="xViewer.html#defineStyle">
     <div class="description">
         <p>This method is used to load model data into viewer. Model has to be either URL to wexBIM file or Blob or File representing wexBIM file binary data. Any other type of argument will throw an exception.
 Region extend is determined based on the region of the model
-Default view if 'front'. If you want to define different view you have to set it up in handler of loaded event. <br>
+Default view if 'front'. If you want to define different view you have to set it up in handler of <a href="xViewer.html#event:loaded">loaded</a> event. <br>
 You can load more than one model if they occupy the same space, use the same scale and have unique product IDs. Duplicated IDs won't affect 
 visualization itself but would cause unexpected user interaction (picking, zooming, ...)</p>
     </div>
@@ -2225,6 +2225,29 @@ visualization itself but would cause unexpected user interaction (picking, zoomi
             
 
             <td class="description last"><p>Model has to be either URL to wexBIM file or Blob or File representing wexBIM file binary data.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>[optional] - Tag to be used to identify the model in <a href="xViewer.html#event:loaded">loaded</a> event.</p></td>
         </tr>
 
     
@@ -2458,7 +2481,8 @@ visualization itself but would cause unexpected user interaction (picking, zoomi
 
     
     <div class="description">
-        <p>Use this method to register to events of the viewer like pick, {@link xViewer#mouseDown mouseDown}, loaded and others. You can define arbitrary number
+        <p>Use this method to register to events of the viewer like <a href="xViewer.html#event:pick">pick</a>, <a href="xViewer.html#event:mouseDown">mouseDown</a>, 
+<a href="xViewer.html#event:loaded">loaded</a> and others. You can define arbitrary number
 of event handlers for any event. You can remove handler by calling <a href="xViewer.html#off">off()</a> method.</p>
     </div>
     
@@ -3285,7 +3309,7 @@ if you call functions like show() or {@link xViewer#zoomTo zoomTo()}.</p>
 
             
 
-            <td class="description last"><p>[optional] Product ID. You can get ID either from semantic structure of the model or from pick event.</p></td>
+            <td class="description last"><p>[optional] Product ID. You can get ID either from semantic structure of the model or from <a href="xViewer.html#event:pick">pick event</a>.</p></td>
         </tr>
 
     
@@ -3814,7 +3838,7 @@ or to the model extent if <a href="xViewer.html#setCameraTarget">setCameraTarget
     
         
 
-        <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">()</span><span class="type-signature"></span></h4>
+        <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">(id)</span><span class="type-signature"></span></h4>
 
         
     
@@ -3834,6 +3858,54 @@ This function is bound to browser framerate of the screen so it will stop consum
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>[optional] - Optional ID of the model to be stopped. You can get this ID from <a href="xViewer.html#event:loaded">loaded</a> event.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -3896,7 +3968,7 @@ This function is bound to browser framerate of the screen so it will stop consum
     
         
 
-        <h4 class="name" id="stop"><span class="type-signature"></span>stop<span class="signature">()</span><span class="type-signature"></span></h4>
+        <h4 class="name" id="stop"><span class="type-signature"></span>stop<span class="signature">(id)</span><span class="type-signature"></span></h4>
 
         
     
@@ -3916,6 +3988,54 @@ switch animation of the model on again by calling <a href="xViewer.html#start">s
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>[optional] - Optional ID of the model to be stopped. You can get this ID from <a href="xViewer.html#event:loaded">loaded</a> event.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -4127,6 +4247,135 @@ method to define clipping by point and normal of the plane or interactively if y
     <ul>
         <li><a href="xViewer.html#event:unclipped">xViewer#event:unclipped</a></li>
     </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    
+        
+
+        <h4 class="name" id="unload"><span class="type-signature"></span>unload<span class="signature">(modelId)</span><span class="type-signature"></span></h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Unloads model from the GPU. This action is not reversable.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>modelId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ID of the model which you can get from <a href="xViewer.html#event:loaded">loaded</a> event.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
     
 
     
@@ -4877,7 +5126,8 @@ method to define clipping by point and normal of the plane or interactively if y
 
     
     <div class="description">
-        <p>Occurs when geometry model is loaded into the viewer. This event has empty object.</p>
+        <p>Occurs when geometry model is loaded into the viewer. This event returns object containing ID of the model.
+This ID can later be used to unload or temporarily stop the model.</p>
     </div>
     
 
@@ -4897,6 +5147,77 @@ method to define clipping by point and normal of the plane or interactively if y
 
     
 
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>model ID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>tag which was passed to 'xViewer.load()' function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
     
 
     
@@ -5340,7 +5661,7 @@ method to define clipping by point and normal of the plane or interactively if y
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha11</a> on Fri Jun 24 2016 14:56:51 GMT+0200 (Central Europe Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha11</a> on Wed Jun 29 2016 17:18:00 GMT+0200 (Central Europe Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
